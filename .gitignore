@@ -1,0 +1,25 @@
+# Virtual environments
+venv/
+.venv/
+
+# Vector DB (local Chroma)
+vectordb/
+
+# Secrets — use config.env.example for templates only
+config.env
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# IDE / OS
+.idea/
+.DS_Store
