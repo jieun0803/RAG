@@ -46,3 +46,6 @@ python-multipart>=0.0.6
 # Data visualization
 matplotlib>=3.7.0
 plotly>=5.17.0
+
+# Tests
+pytest>=8.0.0
