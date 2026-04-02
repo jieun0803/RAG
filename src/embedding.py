@@ -110,3 +110,21 @@ class FinancialEmbeddingStore:
             return self.vectorstore.add_documents(documents=documents, ids=ids)
         except TypeError:
             return self.vectorstore.add_documents(documents=documents)
+
+    def similarity_search(self, query: str, k: int = 5):
+        """질의와 유사한 문서를 상위 k개 반환한다."""
+        return self.vectorstore.similarity_search(query, k=k)
+
+    def get_collection_info(self) -> dict[str, Any]:
+        """현재 컬렉션의 기본 정보를 반환한다."""
+        collection = self.client.get_or_create_collection(name=self.collection_name)
+        return {
+            "collection_name": self.collection_name,
+            "persist_dir": str(self.persist_dir),
+            "count": collection.count(),
+        }
+
+    def load_existing_vectorstore(self) -> bool:
+        """기존 컬렉션에 문서가 하나 이상 있으면 True를 반환한다."""
+        info = self.get_collection_info()
+        return info["count"] > 0
